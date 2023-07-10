@@ -8,7 +8,7 @@ export const Auth0RedirectProvider = ({
 }: { children: ComponentChildren }) => {
   const navigate = useNavigate()
   const onRedirectCallback = (appState) => {
-    navigate((appState && appState.returnTo) || window.location.pathname)
+    navigate(appState?.returnTo || window.location.pathname)
   }
   return (
     <Auth0Provider

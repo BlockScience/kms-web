@@ -6,7 +6,7 @@ function randomRange(min, max) {
 
 export function Paragraphs(lines: number[]) {
   const width = (length, i) => {
-    return i + 1 === length ? randomRange(30, 90) + '%' : '100%'
+    return i + 1 === length ? `${randomRange(30, 90)}%` : '100%'
   }
   return lines.map((length, i) => (
     <Box key={i} mb={20}>

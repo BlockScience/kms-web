@@ -57,7 +57,7 @@ export default function Activity() {
           </Text>
         </Timeline.Item>
 
-        <Timeline.Item title='Proposal submitted'></Timeline.Item>
+        <Timeline.Item title='Proposal submitted' />
         <Timeline.Item title='Tags changed'>
           <Text color='dimmed' size='sm'>
             You&apos;ve created new branch{' '}

@@ -56,7 +56,7 @@ const Chat: ChatComponent = ({
           icon={<IconSend size='1.2rem' />}
           name='prompt'
           placeholder='Send a message'
-        ></TextInput>
+        />
       </form>
     </>
   )
