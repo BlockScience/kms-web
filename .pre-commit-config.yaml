@@ -1,11 +1,14 @@
 repos:
-  - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: "v8.44.0"
+  - repo: local
     hooks:
-      - id: eslint
-        files: \.[t]sx?$
-        types: [file]
-        args: [--quiet]
+      - id: rome
+        entry: rome
+        name: rome
+        args: [check]
+        language: node
+        types_or: [javascript, ts, jsx, tsx, json]
+        additional_dependencies:
+          - rome
 
   - repo: local
     hooks:
@@ -15,3 +18,15 @@ repos:
         entry: npm run typecheck
         files: \.[t]sx?$
         pass_filenames: false
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+      - id: check-byte-order-marker
+      - id: check-case-conflict
+      - id: check-json
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: check-ast
+      - id: debug-statements
+      - id: detect-private-key
+      - id: check-added-large-files
