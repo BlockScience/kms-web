@@ -3,6 +3,7 @@ node_modules
 .cache
 *.log
 *.pem
+package-lock.json
 
 # Environment files
 .env.local
