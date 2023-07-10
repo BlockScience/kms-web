@@ -17,7 +17,7 @@ export type DefaultActionStylesNames = Selectors<typeof useStyles>
 
 export interface DefaultActionProps
   extends DefaultProps<DefaultActionStylesNames>,
-  // @ts-ignore
+    // @ts-ignore
     React.ComponentPropsWithoutRef<'button'> {
   action: SpotlightAction
   hovered: boolean
@@ -40,7 +40,10 @@ export function DefaultAction({
   radius,
   ...others
 }: DefaultActionProps) {
-  const { classes } = useStyles({ radius }, { styles, classNames, name: 'Spotlight' })
+  const { classes } = useStyles(
+    { radius },
+    { styles, classNames, name: 'Spotlight' },
+  )
 
   return (
     <UnstyledButton
@@ -53,7 +56,10 @@ export function DefaultAction({
     >
       <Group noWrap>
         {action.icon && (
-          <Center className={classes.actionIcon} data-hovered={hovered || undefined}>
+          <Center
+            className={classes.actionIcon}
+            data-hovered={hovered || undefined}
+          >
             {action.icon}
           </Center>
         )}

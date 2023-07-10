@@ -71,10 +71,11 @@ export function SpotlightProvider({
     onChange: onQueryChange,
   })
 
-  const [_actions, { registerActions, removeActions, triggerAction }] = useActionsState({
-    actions,
-    onActionsChange,
-  })
+  const [_actions, { registerActions, removeActions, triggerAction }] =
+    useActionsState({
+      actions,
+      onActionsChange,
+    })
 
   const handleQueryChange = (value: string) => {
     setQuery(value)

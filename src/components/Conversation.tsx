@@ -67,7 +67,11 @@ interface MessageProps {
   isResponse?: boolean
   user?: string
 }
-const Message: MessageComponent = ({ children, user, isResponse }: MessageProps): JSX.Element => {
+const Message: MessageComponent = ({
+  children,
+  user,
+  isResponse,
+}: MessageProps): JSX.Element => {
   return (
     <>
       <Paper m='sm' p='sm'>

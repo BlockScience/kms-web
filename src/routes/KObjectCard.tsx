@@ -1,12 +1,28 @@
 import parseHtml from '@/utils/htmlParser'
 import ObjectRID from '@/components/ObjectRID'
-import { Anchor, Group, Paper, Text, Title, useMantineTheme } from '@mantine/core'
+import {
+  Anchor,
+  Group,
+  Paper,
+  Text,
+  Title,
+  useMantineTheme,
+} from '@mantine/core'
 import { KObjectProps, SearchHit } from './Search'
 
 // -------- SUBCOMPONENTS -------- //
-function KObjectCard({ title, text, url, type, platform, tags, id }: KObjectProps) {
+function KObjectCard({
+  title,
+  text,
+  url,
+  type,
+  platform,
+  tags,
+  id,
+}: KObjectProps) {
   const theme = useMantineTheme()
-  const bg = theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0]
+  const bg =
+    theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0]
   return (
     <Paper bg={bg} p='sm' radius='md' withBorder>
       <Group position='apart' noWrap align='start'>

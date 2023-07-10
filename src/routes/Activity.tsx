@@ -10,7 +10,11 @@ export default function Activity() {
       title='Activity'
       dividerLabel='Last 7 days'
       rightSection={
-        <Button variant='outline' leftIcon={<IconSettings />} onClick={() => navigate('/settings')}>
+        <Button
+          variant='outline'
+          leftIcon={<IconSettings />}
+          onClick={() => navigate('/settings')}
+        >
           Change Preferences
         </Button>
       }
@@ -296,7 +300,9 @@ export default function Activity() {
         </Timeline.Item>
       </Timeline>
       <Flex justify='center'>
-        <Button leftIcon={<IconClock strokeWidth={1.5} />}>See more activity</Button>
+        <Button leftIcon={<IconClock strokeWidth={1.5} />}>
+          See more activity
+        </Button>
       </Flex>
     </Layout.Simple>
   )

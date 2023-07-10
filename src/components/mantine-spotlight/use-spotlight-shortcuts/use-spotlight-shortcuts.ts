@@ -1,25 +1,29 @@
-import { HotkeyItem, useHotkeys } from '@mantine/hooks';
+import { HotkeyItem, useHotkeys } from '@mantine/hooks'
 
 export function getHotkeysPayload(
   shortcuts: string | string[],
-  onToggle: () => void
+  onToggle: () => void,
 ): HotkeyItem[] {
   if (shortcuts === null) {
-    return [];
+    return []
   }
 
   if (Array.isArray(shortcuts)) {
-    return shortcuts.map((shortcut) => [shortcut, onToggle]);
+    return shortcuts.map((shortcut) => [shortcut, onToggle])
   }
 
-  return [[shortcuts, onToggle]];
+  return [[shortcuts, onToggle]]
 }
 
 export function useSpotlightShortcuts(
   shortcuts: string | string[],
   onToggle: () => void,
   tagsToIgnore?: string[],
-  triggerOnContentEditable?: boolean
+  triggerOnContentEditable?: boolean,
 ) {
-  useHotkeys(getHotkeysPayload(shortcuts, onToggle), tagsToIgnore, triggerOnContentEditable);
+  useHotkeys(
+    getHotkeysPayload(shortcuts, onToggle),
+    tagsToIgnore,
+    triggerOnContentEditable,
+  )
 }

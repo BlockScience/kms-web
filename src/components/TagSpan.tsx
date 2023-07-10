@@ -7,9 +7,18 @@ const useStyles = createStyles((theme) => ({
     marginTop: '0em',
     height: '1.7em',
     border: '1px solid',
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2],
-    borderColor: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[3],
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[8],
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[4]
+        : theme.colors.gray[2],
+    borderColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[3]
+        : theme.colors.gray[3],
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[0]
+        : theme.colors.gray[8],
     cursor: 'pointer',
   },
 }))

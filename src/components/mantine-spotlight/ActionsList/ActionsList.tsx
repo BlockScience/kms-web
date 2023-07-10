@@ -1,17 +1,31 @@
 import React, { FunctionComponent } from 'preact'
-import { DefaultProps, Selectors, Text, MantineNumberSize, MantineColor } from '@mantine/core'
+import {
+  DefaultProps,
+  Selectors,
+  Text,
+  MantineNumberSize,
+  MantineColor,
+} from '@mantine/core'
 import type { SpotlightAction } from '../types'
-import type { DefaultActionProps, DefaultActionStylesNames } from '../DefaultAction/DefaultAction'
+import type {
+  DefaultActionProps,
+  DefaultActionStylesNames,
+} from '../DefaultAction/DefaultAction'
 import useStyles from './ActionsList.styles'
 
-export type ActionsListStylesNames = Selectors<typeof useStyles> | DefaultActionStylesNames
-type GetGroupOptionsItem<T extends any[]> = { type: 'item'; item: T[number]; index: number }
+export type ActionsListStylesNames =
+  | Selectors<typeof useStyles>
+  | DefaultActionStylesNames
+type GetGroupOptionsItem<T extends any[]> = {
+  type: 'item'
+  item: T[number]
+  index: number
+}
 type GetGroupOptionsLabel = { type: 'label'; label: string }
 
 export interface ActionsListProps
-
-extends DefaultProps<ActionsListStylesNames>,
-// @ts-ignore
+  extends DefaultProps<ActionsListStylesNames>,
+    // @ts-ignore
     React.ComponentPropsWithoutRef<'div'> {
   actions: (GetGroupOptionsItem<SpotlightAction[]> | GetGroupOptionsLabel)[]
   actionComponent?: FunctionComponent<DefaultActionProps>
@@ -40,7 +54,12 @@ export function ActionsList({
   variant,
   ...others
 }: ActionsListProps) {
-  const { classes } = useStyles(null, { name: 'Spotlight', classNames, styles, variant })
+  const { classes } = useStyles(null, {
+    name: 'Spotlight',
+    classNames,
+    styles,
+    variant,
+  })
 
   const items = actions.map((item) => {
     if (item.type === 'item') {
@@ -67,7 +86,8 @@ export function ActionsList({
     )
   })
 
-  const shouldRenderActions = items.length > 0 || (!!nothingFoundMessage && query.trim().length > 0)
+  const shouldRenderActions =
+    items.length > 0 || (!!nothingFoundMessage && query.trim().length > 0)
 
   return (
     <>
@@ -76,7 +96,13 @@ export function ActionsList({
           {items.length > 0 ? (
             items
           ) : (
-            <Text c='dimmed' className={classes.nothingFound} ta='center' fz='lg' py='md'>
+            <Text
+              c='dimmed'
+              className={classes.nothingFound}
+              ta='center'
+              fz='lg'
+              py='md'
+            >
               {nothingFoundMessage}
             </Text>
           )}

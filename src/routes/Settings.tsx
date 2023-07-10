@@ -1,5 +1,13 @@
 import { useForm } from '@mantine/form'
-import { Button, Group, NumberInput, Checkbox, Stack, Text, ActionIcon } from '@mantine/core'
+import {
+  Button,
+  Group,
+  NumberInput,
+  Checkbox,
+  Stack,
+  Text,
+  ActionIcon,
+} from '@mantine/core'
 import { useAuth0 } from '@auth0/auth0-react'
 import { Layout } from '@/components/Layout'
 import { IconLogout } from '@tabler/icons-react'
@@ -11,7 +19,8 @@ export default function Settings() {
       resultsPerPage: 15,
       contextPerResult: 20,
       validate: {
-        resultsPerPage: (value: number) => (value > 0 ? null : 'Results must be greater than 0'),
+        resultsPerPage: (value: number) =>
+          value > 0 ? null : 'Results must be greater than 0',
         contextPerResult: (value: number) =>
           value > 4 ? null : 'Context must include at least 5 words',
       },
@@ -25,7 +34,9 @@ export default function Settings() {
       rightSection={
         <Button
           variant='outline'
-          onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
+          onClick={() =>
+            logout({ logoutParams: { returnTo: window.location.origin } })
+          }
           leftIcon={<IconLogout stroke={1.5} />}
         >
           Log Out
@@ -52,7 +63,10 @@ export default function Settings() {
             description={
               <>
                 <Text>Activity information is only visible to you.</Text>
-                <Text>Public activity like resolving proposals will always be visible.</Text>
+                <Text>
+                  Public activity like resolving proposals will always be
+                  visible.
+                </Text>
               </>
             }
           >

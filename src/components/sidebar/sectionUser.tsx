@@ -21,7 +21,10 @@ const useStyles = createStyles((theme) => ({
     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
 
     '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+      backgroundColor:
+        theme.colorScheme === 'dark'
+          ? theme.colors.dark[6]
+          : theme.colors.gray[0],
     },
   },
 }))
@@ -59,7 +62,11 @@ export function User({ expanded }: { expanded: boolean }) {
     <UnstyledButton
       className={classes.baseButton}
       w='100%'
-      style={{ whiteSpace: 'nowrap', overflow: 'auto', textOverflow: 'ellipsis' }}
+      style={{
+        whiteSpace: 'nowrap',
+        overflow: 'auto',
+        textOverflow: 'ellipsis',
+      }}
     >
       <Group noWrap spacing='xs'>
         {User}
@@ -76,7 +83,11 @@ export function User({ expanded }: { expanded: boolean }) {
   )
 
   return (
-    <NavLink to='/settings' style={{ textDecoration: 'none' }} id='tour-userSettings'>
+    <NavLink
+      to='/settings'
+      style={{ textDecoration: 'none' }}
+      id='tour-userSettings'
+    >
       {() => {
         if (expanded) {
           if (isAuthenticated && user) {

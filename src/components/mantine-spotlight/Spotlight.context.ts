@@ -40,7 +40,9 @@ export function useSpotlight() {
   const ctx = useContext(SpotlightContext)
 
   if (!ctx) {
-    throw new Error('[@mantine/spotlight] SpotlightProvider was not found in tree')
+    throw new Error(
+      '[@mantine/spotlight] SpotlightProvider was not found in tree',
+    )
   }
 
   return ctx

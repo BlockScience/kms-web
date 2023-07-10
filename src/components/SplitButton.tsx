@@ -1,4 +1,11 @@
-import { createStyles, Button, Menu, Group, ActionIcon, rem } from '@mantine/core'
+import {
+  createStyles,
+  Button,
+  Menu,
+  Group,
+  ActionIcon,
+  rem,
+} from '@mantine/core'
 import {
   IconTrash,
   IconBookmark,
@@ -31,13 +38,23 @@ interface SplitButtonProps {
   onSelect: (value: string) => void
   onNew: () => void
 }
-export function SplitButton({ label, items, onSelect, onNew }: SplitButtonProps) {
+export function SplitButton({
+  label,
+  items,
+  onSelect,
+  onNew,
+}: SplitButtonProps) {
   const { classes, theme } = useStyles()
-  const menuIconColor = theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 5 : 6]
+  const menuIconColor =
+    theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 5 : 6]
 
   return (
     <Group noWrap spacing={0}>
-      <Menu transitionProps={{ transition: 'pop' }} position='bottom-end' withinPortal>
+      <Menu
+        transitionProps={{ transition: 'pop' }}
+        position='bottom-end'
+        withinPortal
+      >
         <Menu.Target>
           <Button
             variant='outline'
@@ -52,7 +69,9 @@ export function SplitButton({ label, items, onSelect, onNew }: SplitButtonProps)
             items.map(([value, name], i) => (
               <Menu.Item
                 key={i}
-                icon={<IconMessage size='1rem' stroke={1.5} color={menuIconColor} />}
+                icon={
+                  <IconMessage size='1rem' stroke={1.5} color={menuIconColor} />
+                }
                 onClick={() => onSelect(value)}
               >
                 {name}

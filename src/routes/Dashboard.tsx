@@ -36,7 +36,10 @@ export default function Dashboard() {
         ]}
       />
       <TagSet label='Tags in schema' data={['foo', 'bar', 'baz']} />
-      <TagSet label='Tags in schema & knowledgebase' data={['foo', 'bar', 'baz']} />
+      <TagSet
+        label='Tags in schema & knowledgebase'
+        data={['foo', 'bar', 'baz']}
+      />
       <LogTable
         data={[
           {

@@ -54,16 +54,25 @@ export default function NotFound() {
   return (
     <Container className={classes.root} style={{ height: '100%' }}>
       <Center style={{ height: '100%' }}>
-        <SimpleGrid spacing={80} cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1, spacing: 40 }]}>
+        <SimpleGrid
+          spacing={80}
+          cols={2}
+          breakpoints={[{ maxWidth: 'sm', cols: 1, spacing: 40 }]}
+        >
           <Image src='/404.svg' className={classes.mobileImage} />
           <div>
             <Title className={classes.title}>Something is not right...</Title>
             <Text color='dimmed' size='lg'>
-              The page you are trying to open does not exist. If you think this is an error hop into
-              Slack and start shouting!
+              The page you are trying to open does not exist. If you think this
+              is an error hop into Slack and start shouting!
             </Text>
             <NavLink to='/'>
-              <Button variant='outline' size='md' mt='xl' className={classes.control}>
+              <Button
+                variant='outline'
+                size='md'
+                mt='xl'
+                className={classes.control}
+              >
                 Go home
               </Button>
             </NavLink>

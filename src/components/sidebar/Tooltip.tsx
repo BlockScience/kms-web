@@ -10,7 +10,14 @@ export const NavTooltip = ({ label, disable, children }: NavTooltipProps) => {
   return disable ? (
     children
   ) : (
-    <Tooltip label={label} position='right' withArrow arrowSize={8} openDelay={500} color='gray'>
+    <Tooltip
+      label={label}
+      position='right'
+      withArrow
+      arrowSize={8}
+      openDelay={500}
+      color='gray'
+    >
       {children}
     </Tooltip>
   )

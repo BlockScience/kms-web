@@ -1,5 +1,11 @@
 import { useNavigate } from 'react-router-dom'
-import { createStyles, UnstyledButton, ThemeIcon, Group, Text } from '@mantine/core'
+import {
+  createStyles,
+  UnstyledButton,
+  ThemeIcon,
+  Group,
+  Text,
+} from '@mantine/core'
 import { NavTooltip } from './Tooltip'
 import type { VNode } from 'preact'
 
@@ -41,18 +47,26 @@ const navLinkStyles = createStyles((theme, { active }: NavLinkStyle) => ({
     borderRadius: theme.radius.sm,
     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
     '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+      backgroundColor:
+        theme.colorScheme === 'dark'
+          ? theme.colors.dark[6]
+          : theme.colors.gray[0],
     },
   },
   label: {
-    color: theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.colors.dark[8],
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.gray[0]
+        : theme.colors.dark[8],
   },
   icon: {
     // TODO: use this syntax everywhere
     ...(active && {
       boxSizing: 'border-box',
       boxShadow: `0 0 0px 3px ${
-        theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[3]
+        theme.colorScheme === 'dark'
+          ? theme.colors.dark[3]
+          : theme.colors.gray[3]
       }`,
     }),
   },
@@ -81,7 +95,11 @@ export default function NavItem({
 
   return (
     <NavTooltip label={label} disable={expanded}>
-      <UnstyledButton className={classes.button} onMouseDown={handleNavigate} id={props.id}>
+      <UnstyledButton
+        className={classes.button}
+        onMouseDown={handleNavigate}
+        id={props.id}
+      >
         <Group position={expanded ? 'left' : 'center'}>
           <ThemeIcon color={color} variant='light' className={classes.icon}>
             {icon}

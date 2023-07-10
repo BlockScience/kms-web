@@ -2,7 +2,14 @@ import NavItem, { NavItemProps } from './sectionNavigation'
 import { Header } from './sectionHeader'
 import { Search } from './sectionSearch'
 import { User } from './sectionUser'
-import { Box, Divider, Stack, createStyles, px, useMantineTheme } from '@mantine/core'
+import {
+  Box,
+  Divider,
+  Stack,
+  createStyles,
+  px,
+  useMantineTheme,
+} from '@mantine/core'
 import { useLocalStorage, useMediaQuery } from '@mantine/hooks'
 import {
   IconAlertCircle,
@@ -94,7 +101,10 @@ const useStyles = createStyles((theme) => ({
       transition: '0.2s background-color',
       userSelect: 'none',
       '&:hover': {
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.blue[8] : theme.colors.blue[3],
+        backgroundColor:
+          theme.colorScheme === 'dark'
+            ? theme.colors.blue[8]
+            : theme.colors.blue[3],
         transitionDelay: '0.2s',
         cursor: 'col-resize',
       },
@@ -120,7 +130,11 @@ export function Sidebar() {
   return (
     <Box className={classes.container}>
       <Stack spacing='xs' className={classes.stack} w={expanded ? 280 : 70}>
-        <Box id='sidebarDivider' className='tour-toggleSidebar' onClick={toggle} />
+        <Box
+          id='sidebarDivider'
+          className='tour-toggleSidebar'
+          onClick={toggle}
+        />
         <Stack spacing='xs'>
           <Header expanded={expanded} onToggle={toggle} />
           <Divider />

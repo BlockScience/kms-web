@@ -42,7 +42,9 @@ export default function Graph() {
       selector: 'node',
       style: {
         'background-color':
-          theme.colorScheme === 'dark' ? theme.colors.dark[2] : theme.colors.gray[7],
+          theme.colorScheme === 'dark'
+            ? theme.colors.dark[2]
+            : theme.colors.gray[7],
       },
     },
 
@@ -50,7 +52,10 @@ export default function Graph() {
       selector: 'edge',
       style: {
         width: 3,
-        'line-color': theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[4],
+        'line-color':
+          theme.colorScheme === 'dark'
+            ? theme.colors.dark[5]
+            : theme.colors.gray[4],
         'source-distance-from-node': '3px',
         'target-distance-from-node': '3px',
         'curve-style': 'bezier',
@@ -111,10 +116,9 @@ export default function Graph() {
     userConstIter: undefined, // initial layout iterations with user-specified constraints
     allConstIter: undefined, // initial layout iterations with all constraints including non-overlap
   }
-  cy?.nodes('[id = "a0"],[id = "a2"],[id = "a3"],[id = "a4"],[id = "a5"],[id = "a6"]').style(
-    'background-color',
-    theme.colors.blue[5],
-  )
+  cy?.nodes(
+    '[id = "a0"],[id = "a2"],[id = "a3"],[id = "a4"],[id = "a5"],[id = "a6"]',
+  ).style('background-color', theme.colors.blue[5])
 
   return (
     <>

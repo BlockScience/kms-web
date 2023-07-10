@@ -56,7 +56,11 @@ export default function Documentation() {
         </Markdown>
       </Layout.Sidebar.Main>
       <Layout.Sidebar.Side p='xl' mt='xl'>
-        <DocsTOC docs={docs} onActiveChange={handlePageChange} icons={[null, '#']} />
+        <DocsTOC
+          docs={docs}
+          onActiveChange={handlePageChange}
+          icons={[null, '#']}
+        />
       </Layout.Sidebar.Side>
     </Layout.Sidebar>
   )

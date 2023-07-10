@@ -1,7 +1,7 @@
-import { createStyles, MantineNumberSize, rem } from '@mantine/core';
+import { createStyles, MantineNumberSize, rem } from '@mantine/core'
 
 export interface DefaultActionStylesParams {
-  radius: MantineNumberSize;
+  radius: MantineNumberSize
 }
 
 export default createStyles((theme, { radius }: DefaultActionStylesParams) => ({
@@ -12,7 +12,10 @@ export default createStyles((theme, { radius }: DefaultActionStylesParams) => ({
     padding: `${rem(10)} ${rem(12)}`,
     borderRadius: theme.fn.radius(radius),
     ...theme.fn.hover({
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[1],
+      backgroundColor:
+        theme.colorScheme === 'dark'
+          ? theme.colors.dark[4]
+          : theme.colors.gray[1],
     }),
 
     '&[data-hovered]': {
@@ -34,7 +37,10 @@ export default createStyles((theme, { radius }: DefaultActionStylesParams) => ({
   },
 
   actionIcon: {
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[2] : theme.colors.gray[6],
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[2]
+        : theme.colors.gray[6],
 
     '&[data-hovered]': {
       color: theme.white,
@@ -49,4 +55,4 @@ export default createStyles((theme, { radius }: DefaultActionStylesParams) => ({
       color: theme.colorScheme === 'dark' ? theme.colors.dark[9] : theme.black,
     },
   },
-}));
+}))

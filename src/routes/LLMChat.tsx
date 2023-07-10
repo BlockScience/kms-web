@@ -12,7 +12,9 @@ export default function LLMChat() {
   const [previousChats, setPreviousChats] = useState<string[]>([])
   const [currentPrompt, setCurrentPrompt] = useState<string | null>(null)
   const [currentChatId, setCurrentChatId] = useState<string | null>(null)
-  const [localChatHistory, setLocalChatHistory] = useState<[string, string][]>([])
+  const [localChatHistory, setLocalChatHistory] = useState<[string, string][]>(
+    [],
+  )
 
   // Get all chats for this user on load (returns list of chat ids)
   useApi(`/user/${userId}/chat`, {
@@ -21,11 +23,14 @@ export default function LLMChat() {
   })
 
   // Get chat history for a given chat id (result is list of [prompt, response] tuples) - call is deferred
-  const { update: getChatHistory, loading: getChatHistoryLoading } = useApi(null, {
-    method: 'GET',
-    defer: true,
-    onResult: (result) => setLocalChatHistory(result),
-  })
+  const { update: getChatHistory, loading: getChatHistoryLoading } = useApi(
+    null,
+    {
+      method: 'GET',
+      defer: true,
+      onResult: (result) => setLocalChatHistory(result),
+    },
+  )
 
   // Get chat id for a new chat (result is chat id str) - call is deferred
   const { update: getChatId } = useApi(`/user/${userId}/chat`, {
@@ -61,7 +66,10 @@ export default function LLMChat() {
   useEffect(() => {
     // get response only when it makes sense to do so
     if (!currentChatId || !currentPrompt) return
-    getPromptResponse({ prompt: currentPrompt }, `/user/${userId}/chat/${currentChatId}`)
+    getPromptResponse(
+      { prompt: currentPrompt },
+      `/user/${userId}/chat/${currentChatId}`,
+    )
   }, [currentChatId, currentPrompt])
 
   // HANDLE USER EVENTS
@@ -136,7 +144,9 @@ export default function LLMChat() {
             <Chat.Message isResponse>{response}</Chat.Message>
           </>
         ))}
-        {currentPrompt && <Chat.Message user={userId}>{currentPrompt}</Chat.Message>}
+        {currentPrompt && (
+          <Chat.Message user={userId}>{currentPrompt}</Chat.Message>
+        )}
         {getPromptLoading && !getPromptResponseStream && (
           <Chat.Message isResponse>
             <Loader variant='dots' />

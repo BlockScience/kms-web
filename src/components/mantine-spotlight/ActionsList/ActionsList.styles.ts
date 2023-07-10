@@ -1,4 +1,4 @@
-import { createStyles, rem } from '@mantine/core';
+import { createStyles, rem } from '@mantine/core'
 
 export default createStyles((theme) => ({
   nothingFound: {},
@@ -15,4 +15,4 @@ export default createStyles((theme) => ({
     paddingBottom: 0,
     paddingTop: theme.spacing.md,
   },
-}));
+}))

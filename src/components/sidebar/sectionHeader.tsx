@@ -24,7 +24,10 @@ import { KMS_VERSION } from '@/config'
 
 const useStyles = createStyles((theme) => ({
   logoText: {
-    color: theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.colors.dark[8],
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.gray[0]
+        : theme.colors.dark[8],
     fontSize: theme.fontSizes.xl,
     fontWeight: 700,
   },
@@ -33,14 +36,20 @@ const useStyles = createStyles((theme) => ({
     paddingRight: theme.spacing.xs,
   },
   navText: {
-    color: theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.colors.dark[8],
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.gray[0]
+        : theme.colors.dark[8],
   },
   navLink: {
     marginBottom: 0,
   },
 }))
 
-export function Header({ expanded, onToggle }: { expanded?: boolean; onToggle(): void }) {
+export function Header({
+  expanded,
+  onToggle,
+}: { expanded?: boolean; onToggle(): void }) {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
   const { classes } = useStyles()
   const theme = useMantineTheme()
@@ -71,7 +80,11 @@ export function Header({ expanded, onToggle }: { expanded?: boolean; onToggle():
       variant='default'
       onClick={onToggle}
       size={30}
-      color={theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[7]}
+      color={
+        theme.colorScheme === 'dark'
+          ? theme.colors.dark[3]
+          : theme.colors.gray[7]
+      }
     >
       {expanded ? (
         <IconLayoutSidebarLeftCollapse size={px('1rem')} />

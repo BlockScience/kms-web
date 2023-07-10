@@ -1,4 +1,13 @@
-import { Text, Group, CopyButton, Tooltip, Popover, ActionIcon, Badge, px } from '@mantine/core'
+import {
+  Text,
+  Group,
+  CopyButton,
+  Tooltip,
+  Popover,
+  ActionIcon,
+  Badge,
+  px,
+} from '@mantine/core'
 import { IconCheck, IconCopy } from '@tabler/icons-react'
 import { Md5 } from 'ts-md5'
 
@@ -17,7 +26,10 @@ export default function ObjectRID(props: {
       <Popover.Target>
         <Badge
           color={BADGE_COLOR}
-          style={{ cursor: 'pointer', border: '1px solid rgba(140,140,140,0.2)' }}
+          style={{
+            cursor: 'pointer',
+            border: '1px solid rgba(140,140,140,0.2)',
+          }}
           radius='sm'
         >
           {id.slice(0, charLimit)}
@@ -30,9 +42,17 @@ export default function ObjectRID(props: {
           </Text>
           <CopyButton value={id} timeout={2000}>
             {({ copied, copy }) => (
-              <Tooltip label={copied ? 'Copied' : 'Copy'} withArrow position='right'>
+              <Tooltip
+                label={copied ? 'Copied' : 'Copy'}
+                withArrow
+                position='right'
+              >
                 <ActionIcon color={copied ? 'teal' : 'gray'} onClick={copy}>
-                  {copied ? <IconCheck size={px('1rem')} /> : <IconCopy size={px('1rem')} />}
+                  {copied ? (
+                    <IconCheck size={px('1rem')} />
+                  ) : (
+                    <IconCopy size={px('1rem')} />
+                  )}
                 </ActionIcon>
               </Tooltip>
             )}

@@ -12,7 +12,12 @@ import {
   useMantineTheme,
   Kbd,
 } from '@mantine/core'
-import { IconListSearch, IconMathSymbols, IconTerminal2, IconWallOff } from '@tabler/icons-react'
+import {
+  IconListSearch,
+  IconMathSymbols,
+  IconTerminal2,
+  IconWallOff,
+} from '@tabler/icons-react'
 import { trigger } from '@/utils'
 import { useNavigate } from 'react-router-dom'
 import { OnboardingTour } from '@/components/OnboardingTour'
@@ -79,31 +84,37 @@ export default function Home() {
                 knowledge system.
               </Title>
               <Text color='dimmed' mt='md'>
-                KMS helps us find, discover and organise knowledge objects. Built with new
-                primitives to support the self-organisation of digital knowledge.
+                KMS helps us find, discover and organise knowledge objects.
+                Built with new primitives to support the self-organisation of
+                digital knowledge.
               </Text>
 
               <List mt={30} spacing='sm' size='sm'>
                 <List.Item icon={<IconListSearch stroke={1.5} color={color} />}>
-                  <b>Search-based UX</b> — just hit <Kbd>/</Kbd> to start searching, no knowledge
-                  required.
+                  <b>Search-based UX</b> — just hit <Kbd>/</Kbd> to start
+                  searching, no knowledge required.
                 </List.Item>
-                <List.Item icon={<IconMathSymbols stroke={1.5} color={color} />}>
-                  <b>Powerful query system</b> — searches can be filtered, sorted, and grouped with
-                  both UI and text syntax. <Anchor>Learn more.</Anchor>
+                <List.Item
+                  icon={<IconMathSymbols stroke={1.5} color={color} />}
+                >
+                  <b>Powerful query system</b> — searches can be filtered,
+                  sorted, and grouped with both UI and text syntax.{' '}
+                  <Anchor>Learn more.</Anchor>
                 </List.Item>
                 <List.Item icon={<IconTerminal2 stroke={1.5} color={color} />}>
-                  <b>Programmatically accessible</b> — want to do curation en masse? Do some data
-                  science? You can interact with the system via its <Anchor>APIs</Anchor> and{' '}
-                  <Anchor>libraries</Anchor>.
+                  <b>Programmatically accessible</b> — want to do curation en
+                  masse? Do some data science? You can interact with the system
+                  via its <Anchor>APIs</Anchor> and <Anchor>libraries</Anchor>.
                 </List.Item>
                 <List.Item icon={<IconWallOff stroke={1.4} color={color} />}>
-                  <b>Anti-software</b> — KMS is part of an effort to improve our collective{' '}
+                  <b>Anti-software</b> — KMS is part of an effort to improve our
+                  collective{' '}
                   <Text span fs='italic'>
                     knowledge organisation infrastructure.
                   </Text>{' '}
-                  In contrast to a software product, success for KMS means eventually melting away
-                  into the improved infrastructure of the future.
+                  In contrast to a software product, success for KMS means
+                  eventually melting away into the improved infrastructure of
+                  the future.
                 </List.Item>
               </List>
 

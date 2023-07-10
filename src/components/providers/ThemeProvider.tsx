@@ -1,4 +1,8 @@
-import { MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core'
+import {
+  MantineProvider,
+  ColorSchemeProvider,
+  ColorScheme,
+} from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
 import type { VNode } from 'preact'
 
@@ -16,7 +20,10 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
 
   return (
-    <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+    <ColorSchemeProvider
+      colorScheme={colorScheme}
+      toggleColorScheme={toggleColorScheme}
+    >
       <MantineProvider
         theme={{
           colorScheme,

@@ -1,10 +1,22 @@
 import { useEffect, useState } from 'preact/hooks'
 import { useApi } from '@/hooks'
-import { useSearchParams, useNavigate, createSearchParams } from 'react-router-dom'
+import {
+  useSearchParams,
+  useNavigate,
+  createSearchParams,
+} from 'react-router-dom'
 
 import { IconSearch } from '@tabler/icons-react'
 import { CardsSkeleton } from '@/components/Skeleton'
-import { Anchor, Container, Title, Pagination, Text, TextInput, Stack } from '@mantine/core'
+import {
+  Anchor,
+  Container,
+  Title,
+  Pagination,
+  Text,
+  TextInput,
+  Stack,
+} from '@mantine/core'
 import { Layout } from '@/components/Layout'
 import { KObjectCards } from './KObjectCard'
 import { useLocalStorage } from '@mantine/hooks'
@@ -120,7 +132,8 @@ export default function Search() {
   }, [currentQuery])
 
   const updateSearch = (typesenseQuery: TypesenseQuery) => {
-    if (!typesenseQuery.q) throw new Error('updateSearch must be called with a q parameter')
+    if (!typesenseQuery.q)
+      throw new Error('updateSearch must be called with a q parameter')
     update(typesenseQuery)
     navigate(
       {
@@ -141,7 +154,10 @@ export default function Search() {
         ...QUERY_DEFAULTS,
         q: e.target.query.value,
       })
-    } else throw new Error('handleSearchSubmit must be called with an HTMLFormElement')
+    } else
+      throw new Error(
+        'handleSearchSubmit must be called with an HTMLFormElement',
+      )
   }
 
   const handlePaginationChange = (newPage: number): void => {
@@ -208,7 +224,11 @@ export default function Search() {
 
   const SearchInput = () => (
     <form onSubmit={handleSearchSubmit}>
-      <TextInput name='query' placeholder={currentQuery} icon={<IconSearch />} />
+      <TextInput
+        name='query'
+        placeholder={currentQuery}
+        icon={<IconSearch />}
+      />
     </form>
   )
 

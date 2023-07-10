@@ -1,4 +1,10 @@
-import Joyride, { ACTIONS, EVENTS, STATUS, TooltipRenderProps, CallBackProps } from 'react-joyride'
+import Joyride, {
+  ACTIONS,
+  EVENTS,
+  STATUS,
+  TooltipRenderProps,
+  CallBackProps,
+} from 'react-joyride'
 import { useState } from 'preact/hooks'
 import { ModKey, on } from '@/utils'
 import {
@@ -31,12 +37,13 @@ const tourSteps = [
     target: '#tour-welcome',
     content: (
       <Text align='left'>
-        KMS is designed as an extension of the BlockScience org. It's designed to be{' '}
+        KMS is designed as an extension of the BlockScience org. It's designed
+        to be{' '}
         <Text span fs='italic'>
           pragmatic and useful
         </Text>{' '}
-        while also being a testbed for novel research. Go ahead and hit 'Next' to explore the web
-        interface.
+        while also being a testbed for novel research. Go ahead and hit 'Next'
+        to explore the web interface.
       </Text>
     ),
     disableBeacon: true,
@@ -47,20 +54,22 @@ const tourSteps = [
     content: (
       <>
         <Text align='left' pb='xs'>
-          The <i>spotlight</i> interface is where all searches start — it's the command center of
-          KMS. If you want to search the knowledgebase simply write your search and hit{' '}
-          <Kbd>Enter</Kbd>
+          The <i>spotlight</i> interface is where all searches start — it's the
+          command center of KMS. If you want to search the knowledgebase simply
+          write your search and hit <Kbd>Enter</Kbd>
         </Text>
         <Text align='left' pb='sm'>
-          <Kbd>/</Kbd> will open spotlight with an empty input from anywhere in the app.
+          <Kbd>/</Kbd> will open spotlight with an empty input from anywhere in
+          the app.
         </Text>
         <Text align='left' pb='sm'>
-          <Kbd>Alt</Kbd> <Kbd>/</Kbd> or typing <Kbd>{'?'}</Kbd> will let you run complex queries to
-          filter, sort and group results.
+          <Kbd>Alt</Kbd> <Kbd>/</Kbd> or typing <Kbd>{'?'}</Kbd> will let you
+          run complex queries to filter, sort and group results.
         </Text>
         <Text align='left'>
-          <Kbd>Shift</Kbd> <Kbd>/</Kbd> or typing <Kbd>{'>'}</Kbd> will let you run various commands
-          so you can interact with KMS efficiently, all from your keyboard.
+          <Kbd>Shift</Kbd> <Kbd>/</Kbd> or typing <Kbd>{'>'}</Kbd> will let you
+          run various commands so you can interact with KMS efficiently, all
+          from your keyboard.
         </Text>
       </>
     ),
@@ -140,7 +149,9 @@ const tourSteps = [
   {
     title: 'Changing your preferences',
     target: '#tour-userSettings',
-    content: <Text align='left'>You can view and update your preferences here.</Text>,
+    content: (
+      <Text align='left'>You can view and update your preferences here.</Text>
+    ),
     disableBeacon: true,
   },
   {
@@ -148,8 +159,8 @@ const tourSteps = [
     target: '.tour-navExternal',
     content: (
       <Text align='left'>
-        Down here are links if you want to jump into Slack, view the KMS repositories or dive deeper
-        into the documentation.
+        Down here are links if you want to jump into Slack, view the KMS
+        repositories or dive deeper into the documentation.
       </Text>
     ),
     disableBeacon: true,
@@ -159,7 +170,8 @@ const tourSteps = [
     target: '.tour-toggleDarkmode',
     content: (
       <Text align='left'>
-        Wether you're in a cave or on a beach, KMS has you covered. Try giving that button a click.
+        Wether you're in a cave or on a beach, KMS has you covered. Try giving
+        that button a click.
       </Text>
     ),
     disableBeacon: true,
@@ -167,7 +179,11 @@ const tourSteps = [
   {
     title: 'Collapsing the sidebar',
     target: '.tour-toggleSidebar',
-    content: <Text align='left'>Collapse or expand the sidebar by clicking the divider here.</Text>,
+    content: (
+      <Text align='left'>
+        Collapse or expand the sidebar by clicking the divider here.
+      </Text>
+    ),
     disableBeacon: true,
   },
 ]
@@ -187,7 +203,11 @@ function Tooltip({
       {...tooltipProps}
       maw={700}
       miw={500}
-      bg={theme.colorScheme === 'dark' ? theme.colors.gray[9] : theme.colors.gray[0]}
+      bg={
+        theme.colorScheme === 'dark'
+          ? theme.colors.gray[9]
+          : theme.colors.gray[0]
+      }
     >
       <Box p='md'>
         {step.title && (
@@ -236,13 +256,17 @@ export function OnboardingTour() {
   const handleJoyrideCallback = (data: CallBackProps) => {
     const { action, index, status, type } = data
 
-    if (([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND] as string[]).includes(type)) {
+    if (
+      ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND] as string[]).includes(type)
+    ) {
       // Update state to advance the tour
       setState({
         ...state,
         stepIndex: index + (action === ACTIONS.PREV ? -1 : 1),
       })
-    } else if (([STATUS.FINISHED, STATUS.SKIPPED] as string[]).includes(status)) {
+    } else if (
+      ([STATUS.FINISHED, STATUS.SKIPPED] as string[]).includes(status)
+    ) {
       // Need to set our running state to false, so we can restart if we click start again.
       setState({ ...state, run: false, stepIndex: 0 })
     }
@@ -268,7 +292,10 @@ export function OnboardingTour() {
       tooltipComponent={Tooltip}
       styles={{
         options: {
-          arrowColor: theme.colorScheme === 'dark' ? theme.colors.gray[9] : theme.colors.gray[1],
+          arrowColor:
+            theme.colorScheme === 'dark'
+              ? theme.colors.gray[9]
+              : theme.colors.gray[1],
           zIndex: 10000,
         },
       }}

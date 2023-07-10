@@ -38,11 +38,17 @@ const useStyles = createStyles((theme) => ({
     padding: `${rem(10)} ${rem(12)}`,
     borderRadius: theme.radius.sm,
     ...theme.fn.hover({
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[1],
+      backgroundColor:
+        theme.colorScheme === 'dark'
+          ? theme.colors.dark[4]
+          : theme.colors.gray[1],
     }),
 
     '&[data-hovered]': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[1],
+      backgroundColor:
+        theme.colorScheme === 'dark'
+          ? theme.colors.dark[4]
+          : theme.colors.gray[1],
     },
   },
 }))
@@ -104,7 +110,9 @@ function Footer({ children }: { children: VNode[] | VNode }) {
         py='xs'
         sx={(theme) => ({
           borderTop: `${rem(1)} solid ${
-            theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
+            theme.colorScheme === 'dark'
+              ? theme.colors.dark[4]
+              : theme.colors.gray[2]
           }`,
         })}
       >
@@ -247,7 +255,8 @@ export function Spotlight({ children }: SpotlightProps) {
   const actionsSearch: SpotlightAction[] = [
     {
       title: `Search for "${input}"`,
-      description: 'Search will match any title, text, or tags in the knowledgebase',
+      description:
+        'Search will match any title, text, or tags in the knowledgebase',
       onTrigger: () => {
         navigate({
           pathname: '/search',
@@ -303,7 +312,9 @@ export function Spotlight({ children }: SpotlightProps) {
           return actions.filter((action) =>
             action.title
               .toLowerCase()
-              .includes(removePrefix(query.toLowerCase(), commandPrefix).trim()),
+              .includes(
+                removePrefix(query.toLowerCase(), commandPrefix).trim(),
+              ),
           )
         } else {
           return actions.filter(

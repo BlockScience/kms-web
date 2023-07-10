@@ -1,4 +1,13 @@
-import { Badge, Divider, Group, Popover, SegmentedControl, Stack, Text, px } from '@mantine/core'
+import {
+  Badge,
+  Divider,
+  Group,
+  Popover,
+  SegmentedControl,
+  Stack,
+  Text,
+  px,
+} from '@mantine/core'
 import { IconCheck, IconMinus, IconX } from '@tabler/icons-react'
 
 function FilterState() {

@@ -91,7 +91,9 @@ export function useApi(endpoint: string, options?: ApiOptions): ApiReturn {
       const url = `${api.url}${_endpoint}`
 
       if (_method == 'GET' && _data) {
-        console.error(`Attempting to send GET request with body: ${_data} to ${url}`)
+        console.error(
+          `Attempting to send GET request with body: ${_data} to ${url}`,
+        )
       }
       try {
         const resp = await fetch(url, {

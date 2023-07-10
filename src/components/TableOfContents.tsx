@@ -25,13 +25,17 @@ const useStyles = createStyles((theme) => ({
     }`,
 
     '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+      backgroundColor:
+        theme.colorScheme === 'dark'
+          ? theme.colors.dark[6]
+          : theme.colors.gray[0],
     },
   },
 
   linkActive: {
     fontWeight: 500,
-    color: theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 3 : 7],
+    color:
+      theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 3 : 7],
   },
   linkSection: {
     fontWeight: 700,
@@ -46,7 +50,8 @@ const useStyles = createStyles((theme) => ({
     border: `${rem(2)} solid ${
       theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 3 : 7]
     }`,
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    backgroundColor:
+      theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
     height: rem(INDICATOR_SIZE),
     width: rem(INDICATOR_SIZE),
     borderRadius: rem(INDICATOR_SIZE),
@@ -62,7 +67,11 @@ export interface TableOfContentsProps {
   onActiveChange: (active: number, filename: string) => void
 }
 
-export default function DocsTOC({ docs, icons, onActiveChange }: TableOfContentsProps) {
+export default function DocsTOC({
+  docs,
+  icons,
+  onActiveChange,
+}: TableOfContentsProps) {
   const { classes, cx } = useStyles()
   const [active, setActive] = useState(0)
 
@@ -74,7 +83,11 @@ export default function DocsTOC({ docs, icons, onActiveChange }: TableOfContents
           setActive(index)
           onActiveChange(index, item.filename)
         } else {
-          const closestDoc = closestWithCondition(docs, index, (doc) => doc.filename)
+          const closestDoc = closestWithCondition(
+            docs,
+            index,
+            (doc) => doc.filename,
+          )
           setActive(closestDoc || 0)
           onActiveChange(closestDoc || 0, docs[closestDoc || 0].filename || '')
         }
@@ -100,11 +113,16 @@ export default function DocsTOC({ docs, icons, onActiveChange }: TableOfContents
   const searchIconSize = 1.4
 
   return (
-    <div className={classes.links} style={{ marginLeft: `${searchIconSize / 2}rem` }}>
+    <div
+      className={classes.links}
+      style={{ marginLeft: `${searchIconSize / 2}rem` }}
+    >
       <div
         className={classes.indicator}
         style={{
-          transform: `translateY(${rem(active * LINK_HEIGHT + INDICATOR_OFFSET)})`,
+          transform: `translateY(${rem(
+            active * LINK_HEIGHT + INDICATOR_OFFSET,
+          )})`,
         }}
       />
       {items}
