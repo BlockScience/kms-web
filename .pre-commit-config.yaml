@@ -12,6 +12,6 @@ repos:
       - id: typescript-typecheck
         name: TypeScript Typecheck
         language: system
-        entry: npm --prefix frontend run typecheck
+        entry: npm run typecheck
         files: \.[t]sx?$
         pass_filenames: false
