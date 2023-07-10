@@ -320,8 +320,7 @@ export function Spotlight({ children }: SpotlightProps) {
           return actions.filter(
             (action) =>
               action.title.toLowerCase().includes(query.toLowerCase()) ||
-              (action.description &&
-                action.description.toLowerCase().includes(query.toLowerCase())),
+              action.description?.toLowerCase().includes(query.toLowerCase()),
           )
         }
       }}

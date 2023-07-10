@@ -1,5 +1,6 @@
 export function astToString(node, root = false) {
-  let left, right
+  let left
+  let right
   switch (node.type) {
     case 'expression':
       return astToString(node.value)

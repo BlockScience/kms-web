@@ -175,7 +175,7 @@ export default function Search() {
         <Stack spacing={0} align='center'>
           {recentQueries.reverse().map((query, i) => (
             <Anchor
-              key={i}
+                key={`recent-search-${i}-${query}`}
               onClick={() =>
                 updateSearch({
                   ...QUERY_DEFAULTS,

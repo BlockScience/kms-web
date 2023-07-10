@@ -223,7 +223,9 @@ function Tooltip({
             <Text>Skip</Text>
           </Button>
         )}
-        {isLastStep && <div></div>}
+        {/* 
+        // ! what is this? */}
+        {isLastStep && <div />}
         <Group spacing={5} position='apart'>
           {index > 0 && (
             <Button {...backProps} size='sm' compact id='back'>

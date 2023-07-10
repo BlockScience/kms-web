@@ -50,7 +50,7 @@ export default function LLMChat() {
     defer: true,
     streaming: true,
     onStream: (stream) => {
-      if (stream.length == 0) {
+      if (stream.length === 0) {
         setLocalChatHistory([...localChatHistory, [currentPrompt, '']])
         setCurrentPrompt(null)
       } else {
@@ -138,7 +138,7 @@ export default function LLMChat() {
       >
         {localChatHistory.map(([prompt, response], i) => (
           <>
-            <Chat.Message user={userId} key={i}>
+            <Chat.Message user={userId} key={`${prompt}-${response}`}>
               {prompt}
             </Chat.Message>
             <Chat.Message isResponse>{response}</Chat.Message>

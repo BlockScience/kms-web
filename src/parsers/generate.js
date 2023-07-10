@@ -19,7 +19,7 @@ for (const field of schema.fields) {
   }
   fields[grammarRule].push(field.name)
 }
-let insert = Object.entries(fields)
+const insert = Object.entries(fields)
   .map(
     ([rule, fields]) => `${rule} = ${fields.map((f) => `"${f}"`).join(' / ')}`,
   )
