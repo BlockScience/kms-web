@@ -91,11 +91,6 @@ export function useApi<Result>(
       const token = await getToken()
       const url = `${api.url}${_endpoint}`
 
-      if (_method === 'GET' && _data) {
-        console.error(
-          `Attempting to send GET request with body: ${_data} to ${url}`,
-        )
-      }
       try {
         const resp: Response = await fetch(url, {
           method: _method,
@@ -103,7 +98,7 @@ export function useApi<Result>(
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
-          body: _data ? JSON.stringify(_data) : null,
+          body: _method !== 'GET' && _data ? JSON.stringify(_data) : null,
         })
 
         if (_streaming) {
