@@ -1,10 +1,10 @@
 import DocsTOC from '@/components/TableOfContents'
-import { Box, Grid, ScrollArea, useMantineTheme } from '@mantine/core'
 import { useState } from 'preact/hooks'
 import Markdown from 'markdown-to-jsx'
 import { common } from '@/components/typography/overrides'
 import { useTitle } from '@/hooks'
 import { Layout } from '@/components/Layout'
+import { ComponentChildren } from 'preact'
 
 const initialDoc = 'index'
 const docs = [
@@ -47,7 +47,9 @@ export default function Documentation() {
         <Markdown
           options={{
             overrides: {
-              dw: ({ children }) => <span>{children}</span>,
+              dw: ({ children }: { children: ComponentChildren }) => (
+                <span>{children}</span>
+              ),
               ...common,
             },
           }}

@@ -30,7 +30,7 @@ export default function Settings() {
   return (
     <Layout.Simple
       title='Settings'
-      dividerLabel={user ? `Signed in as ${user.name}` : null}
+      dividerLabel={user ? `Signed in as ${user.name}` : undefined}
       rightSection={
         <Button
           variant='outline'

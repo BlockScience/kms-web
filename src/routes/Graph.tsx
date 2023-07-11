@@ -82,6 +82,7 @@ export default function Graph() {
     avoidOverlap: true, // if true, prevents overlap of node bounding boxes
     handleDisconnected: true, // if true, avoids disconnected components from overlapping
     convergenceThreshold: 0.01, // when the alpha value (system energy) falls below this value, the layout stops
+    // @ts-ignore
     nodeSpacing: function (node) {
       return 10
     }, // extra spacing around nodes

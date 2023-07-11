@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createContext } from 'preact'
 import { useContext } from 'preact/hooks'
 import type { SpotlightAction } from './types'

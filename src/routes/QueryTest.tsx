@@ -1,6 +1,6 @@
-import { Box, Stack, Text, Group } from '@mantine/core'
+import { Text, Group } from '@mantine/core'
 import { useState } from 'preact/hooks'
-import { parser } from '@/parsers/parser'
+import { parser } from '@/parsers/parser-11'
 import { useApi } from '@/hooks'
 import { Layout } from '@/components/Layout'
 
@@ -14,39 +14,47 @@ export default function QueryTest() {
   const [shouldFailTests, setShouldFailTests] = useState([])
   const [currentTest, setCurrentTest] = useState('')
 
-  const handleInputChange = (e) => {
-    try {
-      setParserResponse(JSON.stringify(parser.parse(e.target.value), null, 2))
-      setParseError(false)
-    } catch (e) {
-      if (e.name === 'SyntaxError') {
-        setParseError(true)
-        setParserResponse(e.message)
-      }
-    }
-  }
+  // const handleInputChange = (e: InputEvent) => {
+  //   try {
+  //     setParserResponse(JSON.stringify(parser.parse(e.target.value), null, 2))
+  //     setParseError(false)
+  //   } catch (e) {
+  //     if (e.name === 'SyntaxError') {
+  //       setParseError(true)
+  //       setParserResponse(e.message)
+  //     }
+  //   }
+  // }
 
-  const handleInputSubmit = (e) => {
-    e.preventDefault()
-    setCurrentTest(e.target.filterString.value)
-    update({ q: '*', filter_by: e.target.filterString.value })
-  }
+  // const handleInputSubmit = (e: {
+  //   preventDefault: () => void
+  //   target: {
+  //     filterString: { value: string | ((prevState: string) => string) }
+  //   }
+  // }) => {
+  //   e.preventDefault()
+  //   setCurrentTest(e.target.filterString.value)
+  //   update({ q: '*', filter_by: e.target.filterString.value })
+  // }
 
-  const handleTestSubmit = (e) => {
-    e.preventDefault()
-    setShouldPassTests(
-      JSON.parse(e.target.shouldPass.value).map((x) => {
-        try {
-          parser.parse(x)
-          return '✅'
-        } catch (e) {
-          if (e.name === 'SyntaxError') {
-            return e.message
-          }
-        }
-      }),
-    )
-  }
+  // const handleTestSubmit = (e: {
+  //   preventDefault: () => void
+  //   target: { shouldPass: { value: string } }
+  // }) => {
+  //   e.preventDefault()
+  //   setShouldPassTests(
+  //     JSON.parse(e.target.shouldPass.value).map((x: any) => {
+  //       try {
+  //         parser.parse(x)
+  //         return '✅'
+  //       } catch (e) {
+  //         if (e.name === 'SyntaxError') {
+  //           return e.message
+  //         }
+  //       }
+  //     }),
+  //   )
+  // }
 
   return (
     <Layout.Simple title='Grammar Dev'>

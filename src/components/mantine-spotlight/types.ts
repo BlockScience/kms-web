@@ -15,7 +15,7 @@ export interface SpotlightAction {
   keywords?: string | string[]
 
   /** Decorative icon */
-  icon?: any
+  icon?: unknown
 
   /** Function that is called when action is triggered */
   onTrigger(action: SpotlightAction): void
@@ -24,5 +24,5 @@ export interface SpotlightAction {
   closeOnTrigger?: boolean
 
   /** Any other properties that will be consumed by SpotlightProvider */
-  [key: string]: any
+  [key: string]: unknown
 }

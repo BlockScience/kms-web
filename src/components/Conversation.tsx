@@ -48,7 +48,7 @@ const Chat: ChatComponent = ({
       <form
         onSubmit={(event) => {
           event.preventDefault()
-          onSubmit(event.currentTarget.prompt.value)
+          onSubmit?.(event.currentTarget.prompt.value)
           event.currentTarget.prompt.value = ''
         }}
       >

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { SpotlightAction } from '../../types'
 
 function getKeywords(keywords: string | string[]) {

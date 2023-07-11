@@ -38,7 +38,7 @@ const RESULT_LOADING = <>{CardsSkeleton([100, 120, 80, 100, 130, 150, 100])}</>
 // -------- INTERFACES -------- //
 interface TypesenseQuery {
   q: string
-  [key: string]: any
+  [key: string]: unknown
 }
 
 interface TypesenseResponse {
@@ -99,7 +99,12 @@ export default function Search() {
     defaultValue: [],
   })
 
-  const { result, error, loading, update } = useApi('/objects/query', {
+  const {
+    result: res,
+    error,
+    loading,
+    update,
+  } = useApi('/objects/query', {
     method: 'POST',
     defer: currentQuery === null,
     data: {
@@ -107,6 +112,7 @@ export default function Search() {
       q: currentQuery,
     },
   })
+  const result = res as TypesenseResponse
 
   // Set search result state
   useEffect(() => {
@@ -161,6 +167,7 @@ export default function Search() {
   }
 
   const handlePaginationChange = (newPage: number): void => {
+    if (currentQuery === null) return
     updateSearch({ ...QUERY_DEFAULTS, q: currentQuery, page: newPage })
   }
 
@@ -205,19 +212,17 @@ export default function Search() {
   }
 
   const Paginate = () => {
-    switch (searchState) {
-      case 'results':
-      case 'loading':
-        return (
-          <Container>
-            <Pagination
-              total={Math.ceil(result.found / result.request_params.per_page)}
-              value={result.page}
-              disabled={loading}
-              onChange={handlePaginationChange}
-            />
-          </Container>
-        )
+    if (searchState === 'results') {
+      return (
+        <Container>
+          <Pagination
+            total={Math.ceil(result.found / result.request_params.per_page)}
+            value={result.page}
+            disabled={loading}
+            onChange={handlePaginationChange}
+          />
+        </Container>
+      )
     }
     return null
   }

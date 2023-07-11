@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { Auth0Provider } from '@auth0/auth0-react'
+import { Auth0Provider, AppState } from '@auth0/auth0-react'
 import { auth0 } from '@/config'
 import { ComponentChildren } from 'preact'
 
@@ -7,7 +7,7 @@ export const Auth0RedirectProvider = ({
   children,
 }: { children: ComponentChildren }) => {
   const navigate = useNavigate()
-  const onRedirectCallback = (appState) => {
+  const onRedirectCallback = (appState?: AppState) => {
     navigate(appState?.returnTo || window.location.pathname)
   }
   return (

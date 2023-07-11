@@ -1,18 +1,18 @@
 import { Box, Skeleton, Stack } from '@mantine/core'
 
-function randomRange(min, max) {
+function randomRange(min: number, max: number) {
   return Math.random() * (max - min) + min
 }
 
 export function Paragraphs(lines: number[]) {
-  const width = (length, i) => {
-    return i + 1 === length ? `${randomRange(30, 90)}%` : '100%'
+  const width = (lineLength: number, i: number) => {
+    return i + 1 === lineLength ? `${randomRange(30, 90)}%` : '100%'
   }
   return lines.map((length, i) => (
-    <Box key={i} mb={20}>
+    <Box key={`paragraph-${i}`} mb={20}>
       {[...Array(length)].map((e, i) => (
         <Skeleton
-          key={i}
+          key={`skeleton-${i}`}
           height={14}
           mb={5}
           radius='xl'
@@ -25,6 +25,6 @@ export function Paragraphs(lines: number[]) {
 
 export function CardsSkeleton(cards: number[]) {
   return cards.map((height, i) => (
-    <Skeleton key={i} height={height} radius='md' />
+    <Skeleton key={`skele-${i}`} height={height} radius='md' />
   ))
 }

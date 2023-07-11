@@ -62,7 +62,8 @@ export default function Home() {
   const { classes } = useStyles()
   const navigate = useNavigate()
   const theme = useMantineTheme()
-  const color = theme.colors.blue[theme.primaryShade['light']]
+  const color =
+    theme.colors.blue[theme.primaryShade as keyof typeof theme.primaryShade]
   useTitle('KMS', false)
   return (
     <>

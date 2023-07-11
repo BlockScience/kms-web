@@ -50,7 +50,7 @@ export const KObjectCards = ({ hits }: { hits: SearchHit[] }): JSX.Element => {
       type={hit.document.type}
       platform={hit.document.platform}
       tags={hit.document.tags}
-      text={parseHtml(hit.highlight.text?.snippet)}
+      text={parseHtml(hit.highlight.text?.snippet || '')}
     />
   ))
   return <>{cards}</>

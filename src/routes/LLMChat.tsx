@@ -6,38 +6,39 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { Loader, Select } from '@mantine/core'
 import { useEffect, useState } from 'preact/hooks'
 
+type ChatHistory = [string, string][]
+
 export default function LLMChat() {
   // SETUP STATE
-  const userId = useAuth0().user.email
+  const userId = useAuth0().user?.email
   const [previousChats, setPreviousChats] = useState<string[]>([])
   const [currentPrompt, setCurrentPrompt] = useState<string | null>(null)
   const [currentChatId, setCurrentChatId] = useState<string | null>(null)
-  const [localChatHistory, setLocalChatHistory] = useState<[string, string][]>(
-    [],
-  )
+  const [localChatHistory, setLocalChatHistory] = useState<ChatHistory>([])
 
   // Get all chats for this user on load (returns list of chat ids)
-  useApi(`/user/${userId}/chat`, {
+  useApi<string[]>(`/user/${userId}/chat`, {
     method: 'GET',
     onResult: (result) => setPreviousChats(result),
   })
 
   // Get chat history for a given chat id (result is list of [prompt, response] tuples) - call is deferred
-  const { update: getChatHistory, loading: getChatHistoryLoading } = useApi(
-    null,
-    {
+  const { update: getChatHistory, loading: getChatHistoryLoading } =
+    useApi<ChatHistory>(null, {
       method: 'GET',
       defer: true,
       onResult: (result) => setLocalChatHistory(result),
-    },
-  )
+    })
 
   // Get chat id for a new chat (result is chat id str) - call is deferred
-  const { update: getChatId } = useApi(`/user/${userId}/chat`, {
-    method: 'POST',
-    defer: true,
-    onResult: (result) => setCurrentChatId(result['chat_id']),
-  })
+  const { update: getChatId } = useApi<{ chat_id: string }>(
+    `/user/${userId}/chat`,
+    {
+      method: 'POST',
+      defer: true,
+      onResult: (result) => setCurrentChatId(result['chat_id']),
+    },
+  )
 
   // Get response to a prompt (result is response str) - call is deferred
   const {
@@ -51,7 +52,9 @@ export default function LLMChat() {
     streaming: true,
     onStream: (stream) => {
       if (stream.length === 0) {
-        setLocalChatHistory([...localChatHistory, [currentPrompt, '']])
+        if (!currentPrompt) throw new Error('Started streaming with no prompt')
+        setLocalChatHistory((history) => history.concat([currentPrompt, '']))
+        // setLocalChatHistory([...localChatHistory, [currentPrompt, '']])
         setCurrentPrompt(null)
       } else {
         setLocalChatHistory((history) => {
@@ -81,7 +84,7 @@ export default function LLMChat() {
   }
   const handleChatSelect = (value: string) => {
     setCurrentChatId(value)
-    getChatHistory(null, `/user/${userId}/chat/${value}`)
+    getChatHistory({}, `/user/${userId}/chat/${value}`)
   }
   const handleChatNew = () => {
     setCurrentChatId(null)
@@ -115,9 +118,9 @@ export default function LLMChat() {
             onSelect={handleChatSelect}
             onNew={handleChatNew}
             items={
-              previousChats &&
-              previousChats.length > 0 &&
-              previousChats.map((id) => [id, `Chat #${id}`])
+              (previousChats.length > 0 &&
+                previousChats.map((id) => [id, `Chat #${id}`])) ||
+              []
             }
           />
         </>

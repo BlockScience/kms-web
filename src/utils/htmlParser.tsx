@@ -18,7 +18,7 @@ export default function parseHtml(html: string): JSX.Element {
         // Every second element (starting from index 1) is turned into a tag
         else {
           return (
-            <Text span color={TAG_COLOR} fw={700} key={substr}>
+            <Text span color={TAG_COLOR} fw={700} key={`${i}${substr}`}>
               {substr}
             </Text>
           )

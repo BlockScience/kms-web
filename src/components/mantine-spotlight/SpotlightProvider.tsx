@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useRef } from 'preact/hooks'
 import { useDisclosure, useUncontrolled } from '@mantine/hooks'
 import { openSpotlight, useSpotlightEvents } from './events'

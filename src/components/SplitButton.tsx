@@ -6,14 +6,7 @@ import {
   ActionIcon,
   rem,
 } from '@mantine/core'
-import {
-  IconTrash,
-  IconBookmark,
-  IconCalendar,
-  IconChevronDown,
-  IconPlus,
-  IconMessage,
-} from '@tabler/icons-react'
+import { IconChevronDown, IconPlus, IconMessage } from '@tabler/icons-react'
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -68,7 +61,7 @@ export function SplitButton({
           {items ? (
             items.map(([value, name], i) => (
               <Menu.Item
-                key={i}
+                key={`${value}-${i}`}
                 icon={
                   <IconMessage size='1rem' stroke={1.5} color={menuIconColor} />
                 }
@@ -78,7 +71,9 @@ export function SplitButton({
               </Menu.Item>
             ))
           ) : (
-            <Menu.Item>No previous conversations</Menu.Item>
+            <Menu.Item key='no-conversations'>
+              No previous conversations
+            </Menu.Item>
           )}
         </Menu.Dropdown>
       </Menu>

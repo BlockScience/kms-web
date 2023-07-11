@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { randomId } from '@mantine/hooks'
 import type { SpotlightAction } from '../types'
 

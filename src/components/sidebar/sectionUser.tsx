@@ -47,11 +47,14 @@ export function User({ expanded }: { expanded: boolean }) {
       <Loader size={px('1.8rem')} color='gray' />
     </Center>
   )
+  const { name } = user ?? {}
+
   const User = (
     <Avatar alt='' radius='xl' color='gray' variant='filled'>
-      {user?.name.slice(0, 2).toUpperCase()}
+      {name?.slice(0, 2).toUpperCase() ?? ''}
     </Avatar>
   )
+
   const UserCollapsed = (
     <NavTooltip label='Settings'>
       <Center style={{ cursor: 'pointer' }}>{User}</Center>

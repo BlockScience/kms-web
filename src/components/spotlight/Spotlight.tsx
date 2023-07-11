@@ -28,7 +28,7 @@ import {
 import { useEffect, useState } from 'preact/hooks'
 import { notifications } from '@mantine/notifications'
 import { VNode } from 'preact'
-import { parser } from '@/parsers/parser-7'
+import { parser } from '@/parsers/parser-11'
 
 const useStyles = createStyles((theme) => ({
   action: {
@@ -61,7 +61,11 @@ function CustomAction({
   onTrigger,
   ...others
 }: SpotlightActionProps) {
-  const { classes } = useStyles(null, { styles, classNames, name: 'Spotlight' })
+  const { classes } = useStyles(undefined, {
+    styles,
+    classNames,
+    name: 'Spotlight',
+  })
 
   return (
     <>
@@ -69,7 +73,7 @@ function CustomAction({
         className={classes.action}
         data-hovered={hovered || undefined}
         tabIndex={-1}
-        onMouseDown={(event) => event.preventDefault()}
+        onMouseDown={(event: MouseEvent) => event.preventDefault()}
         onClick={onTrigger}
         {...others}
       >
@@ -159,8 +163,9 @@ export function Spotlight({ children }: SpotlightProps) {
         parser.parse(query)
         setParserError(null)
       } catch (e) {
-        if (e.name === 'SyntaxError') {
-          setParserError(e.message)
+        const err = e as { name: string; message: string }
+        if (err.name === 'SyntaxError') {
+          setParserError(err.message)
         }
       }
     }

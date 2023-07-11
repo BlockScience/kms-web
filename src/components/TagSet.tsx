@@ -9,7 +9,7 @@ export default function TagSet(props: { label: string; data: string[] }) {
       </Group>
       <Group align='flex-end' spacing={rem(5)} mt={25}>
         {props.data.map((tag, i) => (
-          <Badge key={i} radius='sm'>
+          <Badge key={tag} radius='sm'>
             {tag}
           </Badge>
         ))}

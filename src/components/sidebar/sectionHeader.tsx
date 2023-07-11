@@ -19,7 +19,7 @@ import {
 import { NavLink } from 'react-router-dom'
 import LogoLight from '@/assets/images/bsci_glyph_light.svg'
 import LogoDark from '@/assets/images/bsci_glyph_dark.svg'
-import { NavTooltip } from './Tooltip'
+import { NavTooltip } from '@/components/sidebar/Tooltip'
 import { KMS_VERSION } from '@/config'
 
 const useStyles = createStyles((theme) => ({
@@ -57,7 +57,9 @@ export function Header({
   const Icon = () => {
     const width = px('2.2rem')
     const dark = colorScheme === 'dark'
-    return <img src={dark ? LogoLight : LogoDark} width={width} />
+    return (
+      <img src={dark ? LogoLight : LogoDark} width={width} alt='KMS icon' />
+    )
   }
 
   const DarkmodeButton = (

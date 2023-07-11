@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { FunctionComponent } from 'preact'
 import {
   DefaultProps,
@@ -16,7 +17,7 @@ import useStyles from './ActionsList.styles'
 export type ActionsListStylesNames =
   | Selectors<typeof useStyles>
   | DefaultActionStylesNames
-type GetGroupOptionsItem<T extends any[]> = {
+type GetGroupOptionsItem<T extends unknown[]> = {
   type: 'item'
   item: T[number]
   index: number
@@ -54,7 +55,7 @@ export function ActionsList({
   variant,
   ...others
 }: ActionsListProps) {
-  const { classes } = useStyles(null, {
+  const { classes } = useStyles(undefined, {
     name: 'Spotlight',
     classNames,
     styles,

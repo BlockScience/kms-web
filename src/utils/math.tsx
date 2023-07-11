@@ -1,31 +1,25 @@
-type ConditionFunction = (obj: any) => boolean
-
-export function closestWithCondition(
-  arr: any[],
+export function closestIndex<T>(
+  elements: T[],
   startIndex: number,
-  condition: ConditionFunction,
+  condition: (obj: T) => boolean,
 ): number | null {
-  if (startIndex < 0 || startIndex >= arr.length) {
+  if (startIndex < 0 || startIndex >= elements.length) {
     throw new Error('Invalid start index.')
   }
 
   let left = startIndex - 1
   let right = startIndex + 1
-  let match = null
+  let matchIndex: number | null = null
 
-  while (left >= 0 || right < arr.length) {
-    if (right < arr.length) {
-      match = condition(arr[right]) ? right : null
-      if (match) {
-        return match
-      }
+  while (left >= 0 || right < elements.length) {
+    if (right < elements.length) {
+      matchIndex = condition(elements[right]) ? right : null
+      if (matchIndex) return matchIndex
       right++
     }
     if (left >= 0) {
-      match = condition(arr[left]) ? left : null
-      if (match) {
-        return match
-      }
+      matchIndex = condition(elements[left]) ? left : null
+      if (matchIndex) return matchIndex
       left--
     }
   }

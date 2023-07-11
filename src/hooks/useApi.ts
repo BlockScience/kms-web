@@ -2,7 +2,7 @@ import { useState, useEffect } from 'preact/hooks'
 import { useAuth0 } from '@auth0/auth0-react'
 import { api, auth0 } from '@/config'
 
-interface ApiOptions {
+interface ApiOptions<Result> {
   /** The HTTP method to use. */
   method?: string
   /** The body of the request. */
@@ -12,22 +12,22 @@ interface ApiOptions {
   /** If true, response will be streamed with SSE. Does not effect final returned result. */
   streaming?: boolean
   /** Callback for when the result is updated. */
-  onResult?: (result: any) => void
+  onResult?: (result: Result) => void
   /** Callback for when new tokens are streamed. */
-  onStream?: (token: any) => void
+  onStream?: (token: string[]) => void
 }
 
-interface ApiReturn {
+interface ApiReturn<Result> {
   /** The result of the API call. */
-  result: any
+  result: Result | null
   /** The stream of tokens. */
-  stream: any[] | null
+  stream: string[] | null
   /** Whether the API call is loading. */
   loading: boolean
   /** The error from the API call. */
-  error: any
+  error: string | object | null
   /** Update the API call with new data or endpoint. Passing nothing will re-call with current options. */
-  update: (data?: object, endpoint?: string) => void
+  update: (data: object, endpoint?: string) => void
 }
 
 /**
@@ -36,9 +36,10 @@ interface ApiReturn {
  * @param endpoint the endpoint to call.
  * @param options set options like method, body, etc.
  */
-export function useApi(endpoint: string, options?: ApiOptions): ApiReturn {
-  // TODO: Add caching to this hook
-  // TODO: See if we can call this immediately instead of waiting for first update
+export function useApi<Result>(
+  endpoint: string | null,
+  options?: ApiOptions<Result>,
+): ApiReturn<Result> {
   const { getAccessTokenSilently } = useAuth0()
 
   // Internal values
@@ -50,11 +51,11 @@ export function useApi(endpoint: string, options?: ApiOptions): ApiReturn {
 
   // Exported values
   const [loading, setLoading] = useState(false)
-  const [result, setResult] = useState(null)
-  const [stream, setStream] = useState(null)
-  const [error, setError] = useState(null)
+  const [result, setResult] = useState<Result | null>(null)
+  const [stream, setStream] = useState<string[] | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
-  const update = (data: object = _data, endpoint: string = _endpoint) => {
+  const update = (data = _data, endpoint = _endpoint) => {
     if (_data !== data) setData(data)
     if (_endpoint !== endpoint) setEndpoint(endpoint)
     setDeferred(false)
@@ -82,7 +83,7 @@ export function useApi(endpoint: string, options?: ApiOptions): ApiReturn {
 
         return accessToken
       } catch (error) {
-        console.error(error.message)
+        console.error((error as { message: string }).message)
       }
     }
 
@@ -96,7 +97,7 @@ export function useApi(endpoint: string, options?: ApiOptions): ApiReturn {
         )
       }
       try {
-        const resp = await fetch(url, {
+        const resp: Response = await fetch(url, {
           method: _method,
           headers: {
             Authorization: `Bearer ${token}`,
@@ -106,11 +107,12 @@ export function useApi(endpoint: string, options?: ApiOptions): ApiReturn {
         })
 
         if (_streaming) {
-          const reader = resp.body.getReader()
+          const reader = resp.body?.getReader()
 
           setStream([])
 
           for (;;) {
+            if (!reader) break
             const { value, done } = await reader.read()
             const decoder = new TextDecoder('utf-8')
 
@@ -123,7 +125,7 @@ export function useApi(endpoint: string, options?: ApiOptions): ApiReturn {
 
             if (value) {
               const data = decoder.decode(value, { stream: true })
-              setStream((array) => [...array, data])
+              setStream((array) => [...(array || []), data])
             }
           }
         } else {
@@ -132,9 +134,9 @@ export function useApi(endpoint: string, options?: ApiOptions): ApiReturn {
           setLoading(false)
         }
       } catch (e) {
-        console.error(e)
         setLoading(false)
-        setError(e.response?.data || e.message)
+        console.error(e)
+        setError(e as string)
       }
     }
     setLoading(true)

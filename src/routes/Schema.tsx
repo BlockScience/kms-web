@@ -6,9 +6,10 @@ import Markdown from 'markdown-to-jsx'
 import { TagSpan } from '@/components/TagSpan'
 import { common } from '@/components/typography/overrides'
 import { Layout } from '@/components/Layout'
+import { VNode } from 'preact'
 
 export default function Schema() {
-  const { result, loading, error } = useApi('/meta/schema')
+  const { result, loading, error } = useApi<string>('/meta/schema')
   const preprocess = (s: string) =>
     s.replace(/:([a-zA-Z0-9-_]*?)(?=\s|$)/g, '<schemaTag>$1</schemaTag>')
   return (
@@ -30,7 +31,9 @@ export default function Schema() {
         <Markdown
           options={{
             overrides: {
-              schemaTag: ({ children }) => <TagSpan>{children}</TagSpan>,
+              schemaTag: ({ children }: { children: VNode }) => (
+                <TagSpan>{children}</TagSpan>
+              ),
               ...common,
             },
           }}

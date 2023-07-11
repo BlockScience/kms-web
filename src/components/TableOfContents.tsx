@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks'
 import { createStyles, Box, Group, rem } from '@mantine/core'
-import { closestWithCondition } from '@/utils'
+import { closestIndex } from '@/utils'
 
 const LINK_HEIGHT = 38
 const INDICATOR_SIZE = 10
@@ -60,8 +60,10 @@ const useStyles = createStyles((theme) => ({
   },
 }))
 
+type Doc = { label: string; filename?: string; order: number }
+
 export interface TableOfContentsProps {
-  docs: { label: string; filename?: string; order: number }[]
+  docs: Doc[]
   /** arrray of icons to use for each level of nesting. null for no icon */
   icons?: (string | null)[]
   onActiveChange: (active: number, filename: string) => void
@@ -77,16 +79,16 @@ export default function DocsTOC({
 
   const items = docs.map((item, index) => (
     <Box
-      onClick={(event) => {
+      onClick={(event: MouseEvent) => {
         event.preventDefault()
         if (item.filename) {
           setActive(index)
           onActiveChange(index, item.filename)
         } else {
-          const closestDoc = closestWithCondition(
+          const closestDoc = closestIndex<Doc>(
             docs,
             index,
-            (doc) => doc.filename,
+            (doc) => doc.filename !== undefined,
           )
           setActive(closestDoc || 0)
           onActiveChange(closestDoc || 0, docs[closestDoc || 0].filename || '')
